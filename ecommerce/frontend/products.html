@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NOVA Shop — All Products</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="css/cart.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">NOVA<span>.</span></div>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html" class="active">Shop</a>
+    <a href="about.html">About</a>
+  </div>
+  <div class="nav-actions">
+    <button class="icon-btn" id="search-toggle"><i class="fas fa-search"></i></button>
+    <button class="icon-btn cart-btn" id="cart-toggle">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<div class="search-overlay" id="search-overlay">
+  <div class="search-box">
+    <input type="text" id="search-input" placeholder="Search products..." />
+    <button id="search-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="search-results" id="search-results"></div>
+</div>
+
+<div class="page-hero">
+  <h1>All Products</h1>
+  <p>Discover our full collection</p>
+</div>
+
+<div class="shop-layout">
+  <!-- SIDEBAR FILTERS -->
+  <aside class="sidebar-filter">
+    <div class="filter-group">
+      <h4>Categories</h4>
+      <label><input type="checkbox" value="all" checked onchange="applyFilters()"/> All</label>
+      <label><input type="checkbox" value="electronics" onchange="applyFilters()"/> Electronics</label>
+      <label><input type="checkbox" value="fashion" onchange="applyFilters()"/> Fashion</label>
+      <label><input type="checkbox" value="home" onchange="applyFilters()"/> Home & Living</label>
+      <label><input type="checkbox" value="beauty" onchange="applyFilters()"/> Beauty</label>
+      <label><input type="checkbox" value="sports" onchange="applyFilters()"/> Sports</label>
+    </div>
+    <div class="filter-group">
+      <h4>Price Range</h4>
+      <div class="price-range">
+        <input type="range" min="0" max="500" value="500" id="price-range" oninput="updatePrice(this)"/>
+        <span>Up to $<span id="price-val">500</span></span>
+      </div>
+    </div>
+    <div class="filter-group">
+      <h4>Rating</h4>
+      <label><input type="radio" name="rating" value="0" checked onchange="applyFilters()"/> All Ratings</label>
+      <label><input type="radio" name="rating" value="4" onchange="applyFilters()"/> 4★ & above</label>
+      <label><input type="radio" name="rating" value="4.5" onchange="applyFilters()"/> 4.5★ & above</label>
+    </div>
+    <button class="btn-reset" onclick="resetFilters()">Reset Filters</button>
+  </aside>
+
+  <!-- PRODUCTS -->
+  <div class="products-main">
+    <div class="products-toolbar">
+      <p id="product-count">Showing all products</p>
+      <div class="sort-wrap">
+        <label>Sort by:</label>
+        <select id="sort-select" onchange="applyFilters()">
+          <option value="default">Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Top Rated</option>
+          <option value="newest">Newest</option>
+        </select>
+      </div>
+    </div>
+    <div class="products-grid" id="products-grid"></div>
+  </div>
+</div>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<div class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>Your Cart <span id="cart-header-count">(0)</span></h3>
+    <button id="cart-close"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <i class="fas fa-shopping-bag"></i>
+      <p>Your cart is empty</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none;">
+    <div class="cart-total">
+      <span>Subtotal</span>
+      <strong id="cart-total">$0.00</strong>
+    </div>
+    <button class="btn-checkout" onclick="proceedToCheckout()">Checkout <i class="fas fa-arrow-right"></i></button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<footer class="footer">
+  <div class="footer-brand">NOVA<span>.</span></div>
+  <p>© 2025 NOVA Shop. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/products.js"></script>
+</body>
+</html>
